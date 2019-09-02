@@ -18,7 +18,11 @@ func (r *ResInfo) GetCode() int {
 	return r.Code
 }
 
-func (r *ResInfo) CheckStatus() {
+func (r *ResInfo) GetJobInfo() (SeebeezResponse, error) {
 	handler := RequestHandler{}
-	handler.CheckStatus(*r)
+	resp, err := handler.CheckStatus(*r)
+	if err != nil {
+		return SeebeezResponse{}, err
+	}
+	return resp, nil
 }

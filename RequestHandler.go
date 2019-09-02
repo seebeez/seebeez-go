@@ -44,17 +44,17 @@ func (r *RequestHandler) Handle(s Seebeez) (Response, error) {
 	return Response{body}, nil
 }
 
-func (r *RequestHandler) CheckStatus(res ResInfo) (ResInfo, error) {
+func (r *RequestHandler) CheckStatus(res ResInfo) (SeebeezResponse, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth")==""{
 		log.Fatal("No authorization token is set!")
-		return ResInfo{}, errors.New("No AUTH Token!")
+		return SeebeezResponse{}, errors.New("No AUTH Token!")
 	}
 
 	req, err := http.NewRequest("GET", GetURL("job/"+res.Id), nil)
 	if err != nil {
 		log.Fatal(err.Error())
-		return ResInfo{}, err
+		return SeebeezResponse{}, err
 	}
 
 	// Set appropriate headers
@@ -67,10 +67,12 @@ func (r *RequestHandler) CheckStatus(res ResInfo) (ResInfo, error) {
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err.Error())
-		return ResInfo{}, err
+		return SeebeezResponse{}, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
 	resp.Body.Close()
-	return ResInfo{}, nil
+	data := SeebeezResponse{}
+	fmt.Println(string(body))
+	err = json.Unmarshal(body, &data)
+	return data, nil
 }
