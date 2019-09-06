@@ -1,6 +1,7 @@
 # Seebeez Go 
 
 [![Build Status](https://travis-ci.com/seebeez/seebeez-go.svg?branch=master)](https://travis-ci.com/seebeez/seebeez-go)
+[![Coverage Status](https://coveralls.io/repos/github/seebeez/seebeez-go/badge.svg?branch=master)](https://coveralls.io/github/seebeez/seebeez-go?branch=master)
 
 Seebeez is a super fast transcoding service made for developers for converting all types of file formats.
 
