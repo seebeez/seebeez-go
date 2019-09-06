@@ -1,8 +1,8 @@
 package seebeez
 
 type Output struct {
-	Format string `json:"format"`
-	Codec string `json:"codec"`
+	Format  string   `json:"format"`
+	Codec   string   `json:"codec"`
 	Exports []string `json:"exports"`
 }
 
@@ -11,7 +11,7 @@ func (o *Output) AddExport(export string) *Output {
 	return o
 }
 
-func (o *Output) ClearExports() *Output{
+func (o *Output) ClearExports() *Output {
 	o.Exports = []string{}
 	return o
 }
@@ -31,7 +31,7 @@ func (o *Output) SetExports(exports []string) *Output {
 	return o
 }
 
-func NewOutput(format, codec string) *Output{
+func NewOutput(format, codec string) *Output {
 	output := Output{}
 	output.Format = format
 	output.Codec = codec

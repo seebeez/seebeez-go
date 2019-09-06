@@ -11,10 +11,11 @@ import (
 	"os"
 )
 
-type RequestHandler struct {}
+type RequestHandler struct{}
+
 func (r *RequestHandler) Handle(s Seebeez) (Response, error) {
 	// Stop application if no Auth Token is found
-	if os.Getenv("SeebeezAuth")==""{
+	if os.Getenv("SeebeezAuth") == "" {
 		log.Fatal("No authorization token is set!")
 		return Response{}, errors.New("No AUTH Token!")
 	}
@@ -46,7 +47,7 @@ func (r *RequestHandler) Handle(s Seebeez) (Response, error) {
 
 func (r *RequestHandler) CheckStatus(res ResInfo) (SeebeezResponse, error) {
 	// Stop application if no Auth Token is found
-	if os.Getenv("SeebeezAuth")==""{
+	if os.Getenv("SeebeezAuth") == "" {
 		log.Fatal("No authorization token is set!")
 		return SeebeezResponse{}, errors.New("No AUTH Token!")
 	}
@@ -79,9 +80,9 @@ func (r *RequestHandler) CheckStatus(res ResInfo) (SeebeezResponse, error) {
 
 func (r *RequestHandler) GetServiceDetails(a *ServiceAPI) ([]byte, error) {
 	serviceJson := struct {
-		Link string `json:"link"`
+		Link   string `json:"link"`
 		Format string `json:"format"`
-	} {a.Link, a.Format}
+	}{a.Link, a.Format}
 
 	obj, err := json.Marshal(serviceJson)
 	req, err := http.NewRequest("POST", a.Url, bytes.NewBuffer(obj))

@@ -7,8 +7,8 @@ import (
 var SeebeezInstance *Seebeez
 
 type Seebeez struct {
-	Source  string `json:"source"`
-	Server  string `json:"server"`
+	Source  string   `json:"source"`
+	Server  string   `json:"server"`
 	Outputs []Output `json:"outputs"`
 }
 
@@ -57,4 +57,3 @@ func (s *Seebeez) MakeRequest() (Response, error) {
 	resp, err := handler.Handle(*s)
 	return resp, err
 }
-

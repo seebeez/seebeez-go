@@ -1,9 +1,9 @@
 package seebeez
 
 type ResInfo struct {
-	Id string `json:"id"`
+	Id     string `json:"id"`
 	Status string `json:"status"`
-	Code int `json:"code"`
+	Code   int    `json:"code"`
 }
 
 func (r *ResInfo) GetId() string {
