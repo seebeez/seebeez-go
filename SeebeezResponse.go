@@ -9,7 +9,7 @@ import (
 // Under development
 
 type DownloadData struct {
-	Status   int    `json:"status"'`
+	Status   int    `json:"status"`
 	Source   string `json:"source"`
 	Progress int    `json:"progress"`
 	Duration int    `json:"duration"`
@@ -45,11 +45,11 @@ type SeebeezResponse struct {
 
 func GetJsonAndBind(url string, obj interface{}) error {
 	resp, err := http.Get(url)
-	defer resp.Body.Close()
 	jsonBody, err := ioutil.ReadAll(resp.Body)
 	err = json.Unmarshal(jsonBody, &obj)
 	if err != nil {
 		return err
 	}
+	defer resp.Body.Close()
 	return nil
 }

@@ -1,4 +1,4 @@
 .DS_Store
 .idea
-api_test.go
+# api_test.go
 coverage.out
