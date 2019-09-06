@@ -1,4 +1,7 @@
-# Seebeez Go
+# Seebeez Go 
+
+[![Build Status](https://travis-ci.com/seebeez/seebeez-go.svg?branch=master)](https://travis-ci.com/seebeez/seebeez-go)
+
 Seebeez is a super fast transcoding service made for developers for converting all types of file formats.
 
 ## Contents
