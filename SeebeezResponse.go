@@ -2,11 +2,11 @@ package seebeez
 
 // DownloadData ...
 type DownloadData struct {
-	Status   int    `json:"status"`
-	Source   string `json:"source"`
-	Progress int    `json:"progress"`
-	Duration int    `json:"duration"`
-	Link     string `json:"link"`
+	Status   int    `json:"status,omitempty"`
+	Source   string `json:"source,omitempty"`
+	Progress int    `json:"progress,omitempty"`
+	Duration int    `json:"duration,omitempty"`
+	Link     string `json:"link,omitempty"`
 }
 
 // ConvertData ...
