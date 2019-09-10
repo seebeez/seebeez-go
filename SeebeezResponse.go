@@ -11,28 +11,28 @@ type DownloadData struct {
 
 // ConvertData ...
 type ConvertData struct {
-	Status   int    `json:"status"`
-	Format   string `json:"format"`
-	Progress int    `json:"progress"`
-	Duration int    `json:"duration"`
-	Link     string `json:"link"`
+	Status   int    `json:"status,omitempty"`
+	Format   string `json:"format,omitempty"`
+	Progress int    `json:"progress,omitempty"`
+	Duration int    `json:"duration,omitempty"`
+	Link     string `json:"link,omitempty"`
 }
 
 // ExportData ...
 type ExportData struct {
-	Status   int    `json:"status"`
-	URI      string `json:"uri"`
-	Progress int    `json:"progress"`
-	Duration int    `json:"duration"`
+	Status   int    `json:"status,omitempty"`
+	URI      string `json:"uri,omitempty"`
+	Progress int    `json:"progress,omitempty"`
+	Duration int    `json:"duration,omitempty"`
 }
 
 // ResponseData ...
 type ResponseData struct {
-	ID       string         `json:"id"`
-	Download []DownloadData `json:"download"`
-	Convert  []ConvertData  `json:"conver"`
-	Export   []ExportData   `json:"export"`
-	Duration int            `json:"duration"`
+	ID       string         `json:"id,omitempty"`
+	Download []DownloadData `json:"download,omitempty"`
+	Convert  []ConvertData  `json:"convert,omitempty"`
+	Export   []ExportData   `json:"export,omitempty"`
+	Duration int            `json:"duration,omitempty"`
 }
 
 // JobResponse is the combined response from CovertData, ExportData, ResponseData
