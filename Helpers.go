@@ -1,6 +1,8 @@
 package seebeez
 
-import "os"
+import (
+	"os"
+)
 
 var defaultURL = "https://beta.seebeez.com/api/v1"
 
