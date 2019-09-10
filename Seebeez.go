@@ -4,7 +4,7 @@ import (
 	"os"
 )
 
-var SeebeezInstance *Seebeez
+var seebeezInstance *Seebeez
 
 // Seebeez is used for creating a Seebeez request with a given source, server type and outputs
 type Seebeez struct {
@@ -15,12 +15,12 @@ type Seebeez struct {
 
 // Init initialize instance
 func Init(source, server string) *Seebeez {
-	if SeebeezInstance == nil {
-		SeebeezInstance = new(Seebeez)
-		SeebeezInstance.Source = source
-		SeebeezInstance.Server = server
+	if seebeezInstance == nil {
+		seebeezInstance = new(Seebeez)
+		seebeezInstance.Source = source
+		seebeezInstance.Server = server
 	}
-	return SeebeezInstance
+	return seebeezInstance
 }
 
 // AddOutput adds an output to the export type

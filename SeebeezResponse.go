@@ -8,6 +8,7 @@ type DownloadData struct {
 	Duration int    `json:"duration"`
 	Link     string `json:"link"`
 }
+
 // ConvertData ...
 type ConvertData struct {
 	Status   int    `json:"status"`
@@ -16,6 +17,7 @@ type ConvertData struct {
 	Duration int    `json:"duration"`
 	Link     string `json:"link"`
 }
+
 // ExportData ...
 type ExportData struct {
 	Status   int    `json:"status"`
@@ -23,6 +25,7 @@ type ExportData struct {
 	Progress int    `json:"progress"`
 	Duration int    `json:"duration"`
 }
+
 // ResponseData ...
 type ResponseData struct {
 	ID       string         `json:"id"`
@@ -31,7 +34,8 @@ type ResponseData struct {
 	Export   []ExportData   `json:"export"`
 	Duration int            `json:"duration"`
 }
-// SeebeezResponse is the combined response from CovertData, ExportData, ResponseData
-type SeebeezResponse struct {
+
+// JobResponse is the combined response from CovertData, ExportData, ResponseData
+type JobResponse struct {
 	Data ResponseData `json:"data"`
 }

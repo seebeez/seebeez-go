@@ -19,13 +19,13 @@ func (o *Output) ClearExports() *Output {
 	return o
 }
 
-// SetFormat(string) sets the file output format
+// SetFormat sets the file output format
 func (o *Output) SetFormat(format string) *Output {
 	o.Format = format
 	return o
 }
 
-// SetCodec(string) sets the codec for the output file
+// SetCodec sets the codec for the output file
 func (o *Output) SetCodec(format string) *Output {
 	o.Codec = format
 	return o

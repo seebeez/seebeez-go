@@ -3,11 +3,12 @@ package seebeez
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/pkg/errors"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/pkg/errors"
 )
 
 type requestHandler struct{}
@@ -16,7 +17,6 @@ func (r *requestHandler) handle(s Seebeez) (response, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth") == "" {
 		log.Fatal("No authorization token is set!")
-		return response{}, errors.New("no seeebeez auth token")
 	}
 
 	// Prepare JSON
@@ -44,17 +44,16 @@ func (r *requestHandler) handle(s Seebeez) (response, error) {
 	return response{body}, nil
 }
 
-func (r *requestHandler) checkStatus(res ResInfo) (SeebeezResponse, error) {
+func (r *requestHandler) checkStatus(res ResInfo) (JobResponse, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth") == "" {
-		log.Fatal("No authorization token is set!")
-		return SeebeezResponse{}, errors.New("no auth token!")
+		return JobResponse{}, errors.New("no auth token")
 	}
 
 	req, err := http.NewRequest("GET", getURL("job/"+res.ID), nil)
 	if err != nil {
 		log.Fatal(err.Error())
-		return SeebeezResponse{}, err
+		return JobResponse{}, err
 	}
 
 	// Set appropriate headers
@@ -67,11 +66,11 @@ func (r *requestHandler) checkStatus(res ResInfo) (SeebeezResponse, error) {
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err.Error())
-		return SeebeezResponse{}, err
+		return JobResponse{}, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
-	data := SeebeezResponse{}
+	data := JobResponse{}
 	err = json.Unmarshal(body, &data)
 	return data, nil
 }
