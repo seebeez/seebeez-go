@@ -1,19 +1,19 @@
 package seebeez
 
-// Output type for export
+// Output is the specified output information on what to do with the retrieved information form Export
 type Output struct {
 	Format  string   `json:"format"`
 	Codec   string   `json:"codec"`
 	Exports []string `json:"exports"`
 }
 
-// AddExport(string) adds export link to the Output
+// AddExport adds export link to the Output
 func (o *Output) AddExport(export string) *Output {
 	o.Exports = append(o.Exports, export)
 	return o
 }
 
-// ClearExports() will remove all the exports
+// ClearExports will remove all the exports
 func (o *Output) ClearExports() *Output {
 	o.Exports = []string{}
 	return o
@@ -31,13 +31,13 @@ func (o *Output) SetCodec(format string) *Output {
 	return o
 }
 
-// SetExports(string) sets an array of links of the export links
+// SetExports sets an array of links of the export links
 func (o *Output) SetExports(exports []string) *Output {
 	o.Exports = exports
 	return o
 }
 
-// NewOutput(format string, codec string) adds a new Output type to the Export type
+// NewOutput adds a new Output type to the Export type
 func NewOutput(format, codec string) *Output {
 	output := Output{}
 	output.Format = format

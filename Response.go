@@ -11,7 +11,7 @@ type response struct {
 	Bytes []byte
 }
 
-// Returns the []byte format of the response
+// Byte returns the []byte format of the response
 func (r *response) Byte() []byte {
 	body, err := ioutil.ReadAll(bytes.NewReader(r.Bytes))
 	if err != nil {
@@ -20,17 +20,16 @@ func (r *response) Byte() []byte {
 	return body
 }
 
-// Returns the string format of the response
+// String returns the string format of the response
 func (r *response) String() string {
 	return string(r.Byte())
 }
 
-// Returns response containing dispatched job information
+// ResInfo returns response containing dispatched job information
 func (r *response) Info() (ResInfo, error) {
 	var info ResInfo
 	fmt.Println(string(r.Byte()))
 	err := json.Unmarshal(r.Byte(), &info)
-	//err := json.NewDecoder(r.Resp.Body).Decode(info)
 	if err != nil {
 		return ResInfo{}, err
 	}

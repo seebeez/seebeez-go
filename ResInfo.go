@@ -1,24 +1,24 @@
 package seebeez
 
-// Response returned when a job is dispatched
+// ResInfo is returned when a job is dispatched
 type ResInfo struct {
-	Id     string `json:"id"`
+	ID     string `json:"id"`
 	Status string `json:"status"`
 	Code   int    `json:"code"`
 }
-// Gets the id of the job
-func (r *ResInfo) GetId() string {
-	return r.Id
+// GetID retrieves the ID of the dispatched job
+func (r *ResInfo) GetID() string {
+	return r.ID
 }
-// Gets the status of the job
+// GetStatus retrieves the status of the job
 func (r *ResInfo) GetStatus() string {
 	return r.Status
 }
-// Gets the status code of the job
+// GetCode retrieves the status code of the job
 func (r *ResInfo) GetCode() int {
 	return r.Code
 }
-// Return response on the state of the requested job
+// GetJobInfo returns a response on the state of the requested job
 func (r *ResInfo) GetJobInfo() (SeebeezResponse, error) {
 	handler := requestHandler{}
 	resp, err := handler.checkStatus(*r)

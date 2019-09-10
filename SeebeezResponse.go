@@ -1,6 +1,6 @@
 package seebeez
 
-// Download data format
+// DownloadData...
 type DownloadData struct {
 	Status   int    `json:"status"`
 	Source   string `json:"source"`
@@ -8,7 +8,7 @@ type DownloadData struct {
 	Duration int    `json:"duration"`
 	Link     string `json:"link"`
 }
-// Convert data format
+// ConvertData...
 type ConvertData struct {
 	Status   int    `json:"status"`
 	Format   string `json:"format"`
@@ -16,14 +16,14 @@ type ConvertData struct {
 	Duration int    `json:"duration"`
 	Link     string `json:"link"`
 }
-// Export data format
+// ExportData...
 type ExportData struct {
 	Status   int    `json:"status"`
 	Uri      string `json:"uri"`
 	Progress int    `json:"progress"`
 	Duration int    `json:"duration"`
 }
-// Response data format
+// ResponseData...
 type ResponseData struct {
 	Id       string         `json:"id"`
 	Download []DownloadData `json:"download"`
@@ -31,7 +31,7 @@ type ResponseData struct {
 	Export   []ExportData   `json:"export"`
 	Duration int            `json:"duration"`
 }
-// Combined response
+// SeebeezResponse is the combined response from CovertData, ExportData, ResponseData
 type SeebeezResponse struct {
 	Data ResponseData `json:"data"`
 }

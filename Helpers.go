@@ -2,7 +2,7 @@ package seebeez
 
 import "os"
 
-var defaultURL string = "https://beta.seebeez.com/api/v1"
+var defaultURL = "https://beta.seebeez.com/api/v1"
 
 func getURL(endpoint string) string {
 	url := os.Getenv("SeebeezURL")
