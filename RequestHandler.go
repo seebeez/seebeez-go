@@ -83,7 +83,7 @@ func (r *requestHandler) getServiceDetails(a *ServiceAPI) ([]byte, error) {
 	}{a.Link, a.Format}
 
 	obj, err := json.Marshal(serviceJson)
-	req, err := http.NewRequest("POST", a.Url, bytes.NewBuffer(obj))
+	req, err := http.NewRequest("POST", a.URL, bytes.NewBuffer(obj))
 	if err != nil {
 		log.Fatal(err.Error())
 		return []byte{}, err
