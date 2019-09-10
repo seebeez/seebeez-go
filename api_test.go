@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var RESP Response
+var RESP response
 var RESINFO ResInfo
 
 func TestMakeRequest(t *testing.T) {
