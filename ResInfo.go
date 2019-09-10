@@ -26,8 +26,8 @@ func (r *ResInfo) GetCode() int {
 func (r *ResInfo) GetJobInfo() (JobResponse, error) {
 	handler := requestHandler{}
 	resp, err := handler.checkStatus(*r)
-	if err != nil {
-		return JobResponse{}, err
-	}
-	return resp, nil
+	//if err != nil {
+	//	return JobResponse{}, err
+	//}
+	return resp, err
 }
