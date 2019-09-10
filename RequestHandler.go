@@ -51,7 +51,7 @@ func (r *requestHandler) checkStatus(res ResInfo) (SeebeezResponse, error) {
 		return SeebeezResponse{}, errors.New("No AUTH Token!")
 	}
 
-	req, err := http.NewRequest("GET", getURL("job/"+res.Id), nil)
+	req, err := http.NewRequest("GET", getURL("job/"+res.ID), nil)
 	if err != nil {
 		log.Fatal(err.Error())
 		return SeebeezResponse{}, err
