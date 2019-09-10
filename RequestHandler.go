@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 
@@ -16,16 +15,15 @@ type requestHandler struct{}
 func (r *requestHandler) handle(s Seebeez) (response, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth") == "" {
-		log.Fatal("No authorization token is set!")
+		return response{}, errors.New("no auth token set")
 	}
 
 	// Prepare JSON
 	obj, err := json.Marshal(s)
 	req, err := http.NewRequest("POST", getURL("job"), bytes.NewBuffer(obj))
-	if err != nil {
-		log.Fatal(err.Error())
-		return response{}, err
-	}
+	//if err != nil {
+	//	return response{}, err
+	//}
 
 	// Set appropriate headers
 	req.Header.Set("Content-Type", "application/json")
@@ -36,12 +34,11 @@ func (r *requestHandler) handle(s Seebeez) (response, error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err.Error())
 		return response{}, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
-	return response{body}, nil
+	return response{body}, err
 }
 
 func (r *requestHandler) checkStatus(res ResInfo) (JobResponse, error) {
@@ -51,10 +48,9 @@ func (r *requestHandler) checkStatus(res ResInfo) (JobResponse, error) {
 	}
 
 	req, err := http.NewRequest("GET", getURL("job/"+res.ID), nil)
-	if err != nil {
-		log.Fatal(err.Error())
-		return JobResponse{}, err
-	}
+	//if err != nil {
+	//	return JobResponse{}, err
+	//}
 
 	// Set appropriate headers
 	req.Header.Set("Content-Type", "application/json")
@@ -65,14 +61,13 @@ func (r *requestHandler) checkStatus(res ResInfo) (JobResponse, error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err.Error())
 		return JobResponse{}, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
 	data := JobResponse{}
 	err = json.Unmarshal(body, &data)
-	return data, nil
+	return data, err
 }
 
 func (r *requestHandler) getServiceDetails(a *ServiceAPI) ([]byte, error) {
@@ -83,10 +78,10 @@ func (r *requestHandler) getServiceDetails(a *ServiceAPI) ([]byte, error) {
 
 	obj, err := json.Marshal(serviceJSON)
 	req, err := http.NewRequest("POST", a.URL, bytes.NewBuffer(obj))
-	if err != nil {
-		log.Fatal(err.Error())
-		return []byte{}, err
-	}
+
+	//if err != nil {
+	//	return []byte{}, err
+	//}
 
 	// Set appropriate headers
 	req.Header.Set("Content-Type", "application/json")
@@ -96,10 +91,9 @@ func (r *requestHandler) getServiceDetails(a *ServiceAPI) ([]byte, error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err.Error())
 		return []byte{}, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
-	return body, nil
+	return body, err
 }
