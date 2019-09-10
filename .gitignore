@@ -2,3 +2,4 @@
 .idea
 # api_test.go
 coverage.out
+test.bat
