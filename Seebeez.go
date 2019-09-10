@@ -6,12 +6,14 @@ import (
 
 var SeebeezInstance *Seebeez
 
+// Creates a Seebeez request with a given source, server type and outputs
 type Seebeez struct {
 	Source  string   `json:"source"`
 	Server  string   `json:"server"`
 	Outputs []Output `json:"outputs"`
 }
 
+// Initialize instance
 func Init(source, server string) *Seebeez {
 	if SeebeezInstance == nil {
 		SeebeezInstance = new(Seebeez)
@@ -21,39 +23,46 @@ func Init(source, server string) *Seebeez {
 	return SeebeezInstance
 }
 
+// Adds an output to the export type
 func (s *Seebeez) AddOutput(output *Output) *Seebeez {
 	s.Outputs = append(s.Outputs, *output)
 	return s
 }
 
+// Clear the output array
 func (s *Seebeez) ClearOutput(output Output) *Seebeez {
 	s.Outputs = []Output{}
 	return s
 }
 
+// Sets source url of the file
 func (s *Seebeez) SetSource(source string) *Seebeez {
 	s.Source = source
 	return s
 }
 
+// Sets server type
 func (s *Seebeez) SetServer(server string) *Seebeez {
 	s.Server = server
 	return s
 }
 
+// Sets source url of the file and server type
 func (s *Seebeez) Set(source, server string) *Seebeez {
 	s.Source = source
 	s.Server = server
 	return s
 }
 
+// Sets the SeebeezAuth environment variable
 func (s *Seebeez) SetToken(token string) *Seebeez {
 	os.Setenv("SeebeezAuth", token)
 	return s
 }
 
-func (s *Seebeez) MakeRequest() (Response, error) {
-	handler := RequestHandler{}
-	resp, err := handler.Handle(*s)
+// Make request based on the export information and return response with job information
+func (s *Seebeez) MakeRequest() (response, error) {
+	handler := requestHandler{}
+	resp, err := handler.handle(*s)
 	return resp, err
 }

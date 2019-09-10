@@ -3,7 +3,6 @@ package seebeez
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"github.com/pkg/errors"
 	"io/ioutil"
 	"log"
@@ -11,21 +10,21 @@ import (
 	"os"
 )
 
-type RequestHandler struct{}
+type requestHandler struct{}
 
-func (r *RequestHandler) Handle(s Seebeez) (Response, error) {
+func (r *requestHandler) handle(s Seebeez) (response, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth") == "" {
 		log.Fatal("No authorization token is set!")
-		return Response{}, errors.New("No AUTH Token!")
+		return response{}, errors.New("no seeebeez auth token")
 	}
 
 	// Prepare JSON
 	obj, err := json.Marshal(s)
-	req, err := http.NewRequest("POST", GetURL("job"), bytes.NewBuffer(obj))
+	req, err := http.NewRequest("POST", getURL("job"), bytes.NewBuffer(obj))
 	if err != nil {
 		log.Fatal(err.Error())
-		return Response{}, err
+		return response{}, err
 	}
 
 	// Set appropriate headers
@@ -38,21 +37,21 @@ func (r *RequestHandler) Handle(s Seebeez) (Response, error) {
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err.Error())
-		return Response{}, err
+		return response{}, err
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
-	return Response{body}, nil
+	return response{body}, nil
 }
 
-func (r *RequestHandler) CheckStatus(res ResInfo) (SeebeezResponse, error) {
+func (r *requestHandler) checkStatus(res ResInfo) (SeebeezResponse, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth") == "" {
 		log.Fatal("No authorization token is set!")
 		return SeebeezResponse{}, errors.New("No AUTH Token!")
 	}
 
-	req, err := http.NewRequest("GET", GetURL("job/"+res.Id), nil)
+	req, err := http.NewRequest("GET", getURL("job/"+res.Id), nil)
 	if err != nil {
 		log.Fatal(err.Error())
 		return SeebeezResponse{}, err
@@ -73,12 +72,11 @@ func (r *RequestHandler) CheckStatus(res ResInfo) (SeebeezResponse, error) {
 	body, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
 	data := SeebeezResponse{}
-	fmt.Println(string(body))
 	err = json.Unmarshal(body, &data)
 	return data, nil
 }
 
-func (r *RequestHandler) GetServiceDetails(a *ServiceAPI) ([]byte, error) {
+func (r *requestHandler) getServiceDetails(a *ServiceAPI) ([]byte, error) {
 	serviceJson := struct {
 		Link   string `json:"link"`
 		Format string `json:"format"`

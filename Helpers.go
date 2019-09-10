@@ -1,8 +1,13 @@
 package seebeez
 
-const API = "https://beta.seebeez.com/api/"
-const VERSION = "v1"
+import "os"
 
-func GetURL(endpoint string) string {
-	return API + VERSION + "/" + endpoint
+var defaultURL string = "https://beta.seebeez.com/api/v1"
+
+func getURL(endpoint string) string {
+	url := os.Getenv("SeebeezURL")
+	if (url == "") {
+		url = defaultURL
+	}
+	return url + "/" + endpoint
 }
