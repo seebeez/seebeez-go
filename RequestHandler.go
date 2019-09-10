@@ -48,7 +48,7 @@ func (r *requestHandler) checkStatus(res ResInfo) (SeebeezResponse, error) {
 	// Stop application if no Auth Token is found
 	if os.Getenv("SeebeezAuth") == "" {
 		log.Fatal("No authorization token is set!")
-		return SeebeezResponse{}, errors.New("No AUTH Token!")
+		return SeebeezResponse{}, errors.New("no auth token!")
 	}
 
 	req, err := http.NewRequest("GET", getURL("job/"+res.ID), nil)
@@ -77,12 +77,12 @@ func (r *requestHandler) checkStatus(res ResInfo) (SeebeezResponse, error) {
 }
 
 func (r *requestHandler) getServiceDetails(a *ServiceAPI) ([]byte, error) {
-	serviceJson := struct {
+	serviceJSON := struct {
 		Link   string `json:"link"`
 		Format string `json:"format"`
 	}{a.Link, a.Format}
 
-	obj, err := json.Marshal(serviceJson)
+	obj, err := json.Marshal(serviceJSON)
 	req, err := http.NewRequest("POST", a.URL, bytes.NewBuffer(obj))
 	if err != nil {
 		log.Fatal(err.Error())

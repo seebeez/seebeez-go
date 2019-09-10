@@ -1,6 +1,6 @@
 package seebeez
 
-// DownloadData...
+// DownloadData ...
 type DownloadData struct {
 	Status   int    `json:"status"`
 	Source   string `json:"source"`
@@ -8,7 +8,7 @@ type DownloadData struct {
 	Duration int    `json:"duration"`
 	Link     string `json:"link"`
 }
-// ConvertData...
+// ConvertData ...
 type ConvertData struct {
 	Status   int    `json:"status"`
 	Format   string `json:"format"`
@@ -16,16 +16,16 @@ type ConvertData struct {
 	Duration int    `json:"duration"`
 	Link     string `json:"link"`
 }
-// ExportData...
+// ExportData ...
 type ExportData struct {
 	Status   int    `json:"status"`
-	Uri      string `json:"uri"`
+	URI      string `json:"uri"`
 	Progress int    `json:"progress"`
 	Duration int    `json:"duration"`
 }
-// ResponseData...
+// ResponseData ...
 type ResponseData struct {
-	Id       string         `json:"id"`
+	ID       string         `json:"id"`
 	Download []DownloadData `json:"download"`
 	Convert  []ConvertData  `json:"conver"`
 	Export   []ExportData   `json:"export"`

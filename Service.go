@@ -27,14 +27,14 @@ func (a *ServiceAPI) SetURL(url string) {
 	a.URL = url
 }
 
-// GetJson gets the JSON from the response
+// GetJSON gets the JSON from the response
 func (a *ServiceAPI) GetJSON() ([]byte, error) {
 	Handler := requestHandler{}
 	return Handler.getServiceDetails(a)
 }
 
-// GetJsonString returns the STRING from the response
-func (a *ServiceAPI) GetJsonString() (string, error) {
+// GetJSONString returns the STRING from the response
+func (a *ServiceAPI) GetJSONString() (string, error) {
 	body, err := a.GetJSON()
 	return string(body), err
 }

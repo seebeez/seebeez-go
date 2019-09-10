@@ -29,25 +29,25 @@ func (s *Seebeez) AddOutput(output *Output) *Seebeez {
 	return s
 }
 
-// Clear the output array
+// ClearOutput clears the output array
 func (s *Seebeez) ClearOutput(output Output) *Seebeez {
 	s.Outputs = []Output{}
 	return s
 }
 
-// Sets source url of the file
+// SetSource sets source url of the file
 func (s *Seebeez) SetSource(source string) *Seebeez {
 	s.Source = source
 	return s
 }
 
-// Sets server type
+// SetServer sets server type
 func (s *Seebeez) SetServer(server string) *Seebeez {
 	s.Server = server
 	return s
 }
 
-// Sets source url of the file and server type
+// Set sets source url of the file and server type
 func (s *Seebeez) Set(source, server string) *Seebeez {
 	s.Source = source
 	s.Server = server
