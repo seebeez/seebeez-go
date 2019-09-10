@@ -30,7 +30,7 @@ func (s *Seebeez) AddOutput(output *Output) *Seebeez {
 }
 
 // ClearOutput clears the output array
-func (s *Seebeez) ClearOutput(output Output) *Seebeez {
+func (s *Seebeez) ClearOutput() *Seebeez {
 	s.Outputs = []Output{}
 	return s
 }
